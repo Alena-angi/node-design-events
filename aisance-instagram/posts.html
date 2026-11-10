@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aisance — Instagram posts (concept)</title>
+<style>
+@font-face { font-family: "Geist"; src: url(fonts/geist.woff2) format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Geist Mono"; src: url(fonts/geist-mono.woff2) format("woff2"); font-weight: 100 900; }
+@font-face { font-family: "Instrument Serif"; src: url(fonts/instrument-serif-latin-400-normal.woff2) format("woff2"); font-style: normal; }
+@font-face { font-family: "Instrument Serif"; src: url(fonts/instrument-serif-latin-400-italic.woff2) format("woff2"); font-style: italic; }
+
+:root {
+  --forest: #0C2620;   /* main dark */
+  --forest-2: #123A2F;
+  --lime: #C9F26B;     /* accent */
+  --cream: #F1ECE3;    /* light bg */
+  --ink: #0B1F1A;
+  --muted: rgba(241,236,227,.6);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #222; display: flex; flex-direction: column; gap: 40px; padding: 40px; font-family: "Geist", sans-serif; }
+
+.post { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+.serif { font-family: "Instrument Serif", serif; font-weight: 400; }
+.it { font-family: "Instrument Serif", serif; font-style: italic; font-weight: 400; }
+.mono { font-family: "Geist Mono", monospace; letter-spacing: .12em; text-transform: uppercase; }
+
+/* placeholder logo: mark + wordmark (swap for the real new logo) */
+.logo { display: flex; align-items: center; gap: 14px; font-weight: 500; font-size: 34px; letter-spacing: -.02em; }
+.mark { width: 40px; height: 40px; border-radius: 50%; background: var(--lime); position: relative; flex: none; }
+.mark::after { content: ""; position: absolute; inset: 9px 9px 9px 9px; border-radius: 50%;
+  border: 6px solid var(--forest); border-left-color: transparent; border-bottom-color: transparent; transform: rotate(-45deg); }
+
+.top { position: absolute; top: 80px; left: 90px; right: 90px; display: flex; justify-content: space-between; align-items: center; }
+.bottom { position: absolute; bottom: 80px; left: 90px; right: 90px; display: flex; justify-content: space-between; align-items: flex-end; }
+.pill { border: 2px solid currentColor; border-radius: 99px; padding: 10px 22px; font-size: 20px; }
+
+/* ---------- POST 1: reveal ---------- */
+#p1 { background: radial-gradient(900px 700px at 50% 52%, #1F5A45 0%, var(--forest) 60%, #071815 100%); color: var(--cream); }
+#p1 .grid-bg { position: absolute; inset: 0; opacity: .08;
+  background-image: linear-gradient(var(--cream) 1px, transparent 1px), linear-gradient(90deg, var(--cream) 1px, transparent 1px);
+  background-size: 90px 90px; mask-image: radial-gradient(circle at 50% 50%, #000 0%, transparent 70%); }
+#p1 .orbit { position: absolute; left: 50%; top: 600px; width: 660px; height: 660px; transform: translate(-50%,-50%);
+  border-radius: 50%; border: 2px solid rgba(201,242,107,.25); }
+#p1 .orbit.o2 { width: 480px; height: 480px; border-color: rgba(201,242,107,.4); }
+#p1 .bigmark { position: absolute; left: 50%; top: 600px; width: 300px; height: 300px; transform: translate(-50%,-50%);
+  border-radius: 50%; background: var(--lime); box-shadow: 0 0 160px 30px rgba(201,242,107,.35); }
+#p1 .bigmark::after { content: ""; position: absolute; inset: 70px; border-radius: 50%; border: 44px solid var(--forest);
+  border-left-color: transparent; border-bottom-color: transparent; transform: rotate(-45deg); }
+#p1 h1 { position: absolute; left: 0; right: 0; top: 860px; text-align: center; font-weight: 500; font-size: 112px; line-height: .95; letter-spacing: -.045em; }
+#p1 h1 .it { color: var(--lime); font-size: 130px; letter-spacing: -.02em; }
+#p1 .sub { position: absolute; left: 0; right: 0; top: 1100px; text-align: center; font-size: 30px; color: var(--muted); }
+
+/* ---------- POST 2: AI copilot feature ---------- */
+#p2 { background: var(--cream); color: var(--ink); }
+#p2 h1 { position: absolute; top: 170px; left: 90px; right: 90px; font-weight: 500; font-size: 108px; line-height: .92; letter-spacing: -.045em; }
+#p2 h1 .it { font-size: 124px; letter-spacing: -.02em; color: #2B6B4F; }
+#p2 .phone { position: absolute; left: 330px; top: 470px; width: 480px; height: 980px; border-radius: 72px; background: #1A1A1A;
+  padding: 14px; transform: rotate(-6deg); box-shadow: 0 60px 120px rgba(12,38,32,.35), inset 0 0 0 3px #3a3a3a; }
+#p2 .screen { width: 100%; height: 100%; border-radius: 58px; background: linear-gradient(180deg, var(--forest-2), var(--forest)); padding: 70px 30px; color: var(--cream); position: relative; overflow: hidden; }
+#p2 .island { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); width: 130px; height: 36px; background: #000; border-radius: 20px; }
+#p2 .apphead { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 500; margin-bottom: 34px; }
+#p2 .apphead .mark { width: 28px; height: 28px; }
+#p2 .apphead .mark::after { inset: 6px; border-width: 4px; }
+#p2 .apphead small { margin-left: auto; font-size: 14px; color: var(--lime); }
+.bubble { border-radius: 26px; padding: 20px 22px; font-size: 21px; line-height: 1.3; margin-bottom: 18px; }
+.bubble.me { background: var(--lime); color: var(--ink); margin-left: 60px; border-bottom-right-radius: 8px; }
+.bubble.ai { background: rgba(241,236,227,.08); border: 1px solid rgba(241,236,227,.14); border-bottom-left-radius: 8px; margin-right: 20px; }
+.bubble.ai b { color: var(--lime); font-weight: 600; }
+.mini { margin-top: 14px; font-size: 15px; color: var(--muted); }
+.bar { height: 10px; border-radius: 9px; background: rgba(241,236,227,.12); margin-top: 8px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 72%; background: var(--lime); border-radius: 9px; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.chips span { font-size: 15px; border: 1px solid rgba(241,236,227,.25); border-radius: 99px; padding: 8px 14px; }
+#p2 .tag { position: absolute; background: var(--forest); color: var(--cream); border-radius: 24px; padding: 20px 26px; font-size: 22px; box-shadow: 0 20px 50px rgba(12,38,32,.25); }
+#p2 .tag b { display: block; font-size: 40px; font-weight: 500; letter-spacing: -.03em; color: var(--lime); }
+#p2 .tag.t1 { left: 70px; top: 760px; transform: rotate(-4deg); }
+#p2 .tag.t2 { right: 70px; top: 1010px; transform: rotate(5deg); background: var(--lime); color: var(--ink); }
+#p2 .tag.t2 b { color: var(--ink); }
+#p2 .bottom { z-index: 3; }
+
+/* ---------- POST 3: education ---------- */
+#p3 { background: var(--lime); color: var(--ink); }
+#p3 .kicker { position: absolute; top: 200px; left: 90px; font-size: 22px; }
+#p3 h1 { position: absolute; top: 250px; left: 90px; right: 90px; font-weight: 500; font-size: 104px; line-height: .93; letter-spacing: -.045em; }
+#p3 h1 .it { font-size: 118px; letter-spacing: -.02em; }
+#p3 .salary { position: absolute; top: 560px; left: 90px; right: 90px; display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 3px solid var(--ink); padding-top: 22px; font-size: 26px; }
+#p3 .salary b { font-size: 64px; font-weight: 500; letter-spacing: -.03em; }
+#p3 .rows { position: absolute; top: 700px; left: 90px; right: 90px; display: flex; flex-direction: column; gap: 22px; }
+#p3 .row { display: grid; grid-template-columns: 1fr auto; align-items: center; row-gap: 10px; }
+#p3 .row .lbl { font-size: 30px; font-weight: 500; letter-spacing: -.02em; }
+#p3 .row .lbl span { font-weight: 400; opacity: .6; font-size: 24px; margin-left: 10px; }
+#p3 .row .amt { font-size: 34px; font-weight: 500; letter-spacing: -.02em; }
+#p3 .track { grid-column: 1 / -1; height: 64px; border-radius: 18px; background: rgba(11,31,26,.1); position: relative; overflow: hidden; }
+#p3 .fill { position: absolute; inset: 0 auto 0 0; border-radius: 18px; display: flex; align-items: center; padding-left: 24px; color: var(--cream); font-size: 26px; font-weight: 500; }
+#p3 .bottom { color: var(--ink); }
+.mark.dark { background: var(--forest); }
+.mark.dark::after { border-color: var(--lime); border-left-color: transparent; border-bottom-color: transparent; }
+</style>
+</head>
+<body>
+
+<!-- 1 · Rebrand reveal -->
+<section class="post" id="p1">
+  <div class="grid-bg"></div>
+  <div class="orbit"></div><div class="orbit o2"></div>
+  <div class="bigmark"></div>
+  <div class="top">
+    <div class="logo"><div class="mark"></div>aisance</div>
+    <div class="pill mono">New look · New app</div>
+  </div>
+  <h1>Same mission.<br><span class="it">A new</span> Aisance.</h1>
+  <p class="sub">Your AI finance copilot — redesigned from the first pixel.</p>
+  <div class="bottom">
+    <div class="mono" style="font-size:20px;color:var(--muted)">Luxembourg · 2026</div>
+    <div class="mono" style="font-size:20px">Swipe →</div>
+  </div>
+</section>
+
+<!-- 2 · Feature: ask the AI -->
+<section class="post" id="p2">
+  <div class="top">
+    <div class="logo"><div class="mark dark"></div>aisance</div>
+    <div class="pill mono">New · AI Copilot</div>
+  </div>
+  <h1>Ask your money <span class="it">anything.</span></h1>
+
+  <div class="phone"><div class="screen">
+    <div class="island"></div>
+    <div class="apphead"><div class="mark"></div>Copilot <small>● online</small></div>
+    <div class="bubble me">Can I afford a weekend in Paris in May?</div>
+    <div class="bubble ai">Yes 🙌 Put aside <b>€45 a week</b> starting now and you'll have <b>€450</b> by May — without touching your savings goal.
+      <div class="mini">Paris fund · 72% planned</div>
+      <div class="bar"><i></i></div>
+    </div>
+    <div class="chips"><span>Make it a goal</span><span>Show my budget</span><span>Cheaper option?</span></div>
+  </div></div>
+
+  <div class="tag t1"><b>€45/week</b>to reach your goal</div>
+  <div class="tag t2"><b>No jargon.</b>Just clear answers</div>
+
+  <div class="bottom">
+    <div></div>
+    <div class="mono" style="font-size:20px;background:var(--cream);padding:10px 0 10px 16px">01 / 06 →</div>
+  </div>
+</section>
+
+<!-- 3 · Education: 50/30/20 -->
+<section class="post" id="p3">
+  <div class="top">
+    <div class="logo"><div class="mark dark"></div>aisance</div>
+    <div class="pill mono">Save for later</div>
+  </div>
+  <div class="kicker mono">Money in 30 seconds · 01</div>
+  <h1>The 50/30/20 rule, <span class="it">on one real salary.</span></h1>
+  <div class="salary"><span>Net monthly income</span><b>€4,000</b></div>
+  <div class="rows">
+    <div class="row">
+      <div class="lbl">Needs <span>rent, food, transport</span></div><div class="amt">€2,000</div>
+      <div class="track"><div class="fill" style="width:100%;background:var(--forest)">50%</div></div>
+    </div>
+    <div class="row">
+      <div class="lbl">Wants <span>dinners, trips, fun</span></div><div class="amt">€1,200</div>
+      <div class="track"><div class="fill" style="width:60%;background:#2B6B4F">30%</div></div>
+    </div>
+    <div class="row">
+      <div class="lbl">Savings <span>goals & safety net</span></div><div class="amt">€800</div>
+      <div class="track"><div class="fill" style="width:40%;background:#4E8F6C">20%</div></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div style="font-size:24px;max-width:600px;line-height:1.3">Set your split once in <b>Aisance</b> — and get a nudge when you drift.</div>
+    <div class="mono" style="font-size:20px">Swipe →</div>
+  </div>
+</section>
+
+</body>
+</html>

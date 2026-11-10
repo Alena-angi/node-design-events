@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<title>Aisance — Instagram profile grid (concept)</title>
+<style>
+@font-face { font-family: "Geist"; src: url(fonts/geist.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #000; color: #F5F5F5; font-family: "Geist", -apple-system, sans-serif; width: 430px; }
+.status { height: 54px; display: flex; justify-content: space-between; align-items: center; padding: 0 28px; font-weight: 600; font-size: 16px; }
+.nav { display: flex; align-items: center; gap: 14px; padding: 6px 16px 14px; font-size: 22px; font-weight: 700; }
+.nav .back { font-size: 26px; font-weight: 300; }
+.head { display: flex; align-items: center; gap: 22px; padding: 4px 16px 12px; }
+.avatar { width: 86px; height: 86px; border-radius: 50%; background: #0C2620; display: grid; place-items: center; flex: none;
+  outline: 2px solid #C9F26B; outline-offset: 3px; }
+.avatar .m { width: 46px; height: 46px; border-radius: 50%; background: #C9F26B; position: relative; }
+.avatar .m::after { content: ""; position: absolute; inset: 11px; border-radius: 50%; border: 7px solid #0C2620; border-left-color: transparent; border-bottom-color: transparent; transform: rotate(-45deg); }
+.stats { display: flex; flex: 1; justify-content: space-around; text-align: center; }
+.stats b { display: block; font-size: 17px; }
+.stats span { font-size: 13px; color: #bbb; }
+.bio { padding: 0 16px 12px; font-size: 14px; line-height: 1.4; }
+.bio .name { font-weight: 600; }
+.bio .cat { color: #999; }
+.bio a { color: #E0F1FF; text-decoration: none; }
+.btns { display: flex; gap: 6px; padding: 0 16px 16px; }
+.btns div { flex: 1; text-align: center; background: #262626; border-radius: 9px; padding: 8px; font-size: 14px; font-weight: 600; }
+.btns .follow { background: #0095F6; }
+.hl { display: flex; gap: 16px; padding: 0 16px 16px; overflow: hidden; }
+.hl div { text-align: center; font-size: 12px; width: 64px; flex: none; }
+.hl i { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; border: 1px solid #333; margin-bottom: 6px;
+  font-style: normal; font-size: 22px; background: #0C2620; color: #C9F26B; outline: 2px solid #000; }
+.hl div:nth-child(2) i { background: #F1ECE3; color: #0C2620; }
+.hl div:nth-child(3) i { background: #C9F26B; color: #0C2620; }
+.tabs { display: flex; border-bottom: 1px solid #262626; }
+.tabs div { flex: 1; text-align: center; padding: 12px 0; font-size: 18px; color: #777; }
+.tabs div:first-child { color: #fff; border-bottom: 1px solid #fff; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.cell { aspect-ratio: 3 / 4; overflow: hidden; position: relative; background: #111; }
+.cell img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cell .pin { position: absolute; top: 6px; right: 6px; font-size: 13px; }
+.cell .stack { position: absolute; top: 7px; right: 7px; width: 14px; height: 14px; border: 2px solid #fff; border-radius: 3px; box-shadow: 3px -3px 0 -1px rgba(255,255,255,.8); }
+.cell.old { background: #1a1a1a; display: grid; place-items: center; color: #555; font-size: 12px; text-align: center; padding: 10px; }
+</style>
+</head>
+<body>
+  <div class="status"><span>9:41</span><span>●●● ᯤ ▮</span></div>
+  <div class="nav"><span class="back">‹</span>aisance.app</div>
+  <div class="head">
+    <div class="avatar"><div class="m"></div></div>
+    <div class="stats"><div><b>3</b><span>posts</span></div><div><b>—</b><span>followers</span></div><div><b>—</b><span>following</span></div></div>
+  </div>
+  <div class="bio">
+    <div class="name">Aisance · AI finance copilot</div>
+    <div class="cat">App</div>
+    Money, with ease 🇱🇺<br>
+    Budget smarter. Ask anything. Stress less.<br>
+    ✦ New app is live — try 7 days free ↓<br>
+    <a href="#">aisance.io</a>
+  </div>
+  <div class="btns"><div class="follow">Follow</div><div>Message</div><div>Download</div></div>
+  <div class="hl">
+    <div><i>✦</i>New</div>
+    <div><i>?</i>Ask AI</div>
+    <div><i>€</i>Tips</div>
+    <div><i>♥</i>Stories</div>
+    <div><i>i</i>FAQ</div>
+  </div>
+  <div class="tabs"><div>▦</div><div>▷</div><div>◫</div></div>
+  <div class="grid">
+    <div class="cell"><img src="out/post-3.png"><span class="stack"></span></div>
+    <div class="cell"><img src="out/post-2.png"><span class="stack"></span></div>
+    <div class="cell"><img src="out/post-1.png"><span class="pin">📌</span></div>
+    <div class="cell old">старі пости<br>(архів)</div>
+    <div class="cell old">старі пости<br>(архів)</div>
+    <div class="cell old">старі пости<br>(архів)</div>
+  </div>
+</body>
+</html>
