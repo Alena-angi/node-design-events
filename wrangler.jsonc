@@ -1,0 +1,8 @@
+// Cloudflare Workers — static site (no server code). Everything in ./site is served as is.
+{
+  "name": "node-design-events",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": "./site"
+  }
+}

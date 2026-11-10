@@ -1,0 +1,1 @@
+document.querySelectorAll(`[data-xf-toggle]`).forEach(e=>{let t=document.getElementById(e.getAttribute(`aria-controls`));e.addEventListener(`click`,()=>{let n=e.getAttribute(`aria-expanded`)!==`true`;e.setAttribute(`aria-expanded`,String(n)),t?.classList.toggle(`open`,n)})});
