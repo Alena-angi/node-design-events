@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aisance — phone hero (no text)</title>
+<style>
+@font-face { font-family: "Geist"; src: url(../fonts/geist.woff2) format("woff2"); font-weight: 100 900; }
+:root {
+  --bg-0: #07181A;   /* identity: darkest */
+  --bg-1: #0B3737;   /* identity: deep teal */
+  --bg-2: #297A7E;   /* identity: light teal */
+  --accent: #45DED1; /* app accent (from real screens) */
+  --card: #1F1F1F;   /* app card */
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: transparent; font-family: "Geist", -apple-system, sans-serif; }
+
+.frame { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+.bg { position: absolute; inset: 0;
+  background:
+    radial-gradient(520px 420px at 62% 40%, rgba(69,222,209,.22), transparent 70%),
+    radial-gradient(900px 700px at 50% 55%, #155455 0%, var(--bg-1) 45%, var(--bg-0) 100%); }
+/* soft light beam, like the sky light in the reference */
+.beam { position: absolute; left: 50%; top: -200px; width: 900px; height: 1500px; transform: translateX(-50%) rotate(18deg);
+  background: linear-gradient(90deg, transparent, rgba(150,240,232,.07) 40%, rgba(150,240,232,.11) 50%, rgba(150,240,232,.07) 60%, transparent); filter: blur(30px); }
+.grain { position: absolute; inset: 0; opacity: .06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+
+.scene { position: absolute; inset: 0; perspective: 2400px; }
+.floor { position: absolute; left: 50%; top: 1150px; width: 560px; height: 90px; transform: translateX(-46%);
+  background: radial-gradient(closest-side, rgba(0,0,0,.55), transparent); filter: blur(10px); }
+
+/* ---------- phone ---------- */
+.phone { position: absolute; left: 318px; top: 175px; width: 444px; height: 955px; border-radius: 76px;
+  transform: rotateZ(-9deg) rotateY(-12deg) rotateX(4deg); transform-style: preserve-3d;
+  background: linear-gradient(135deg, #6f7778 0%, #2a2f30 22%, #121516 50%, #3b4243 80%, #8a9293 100%);
+  padding: 5px;
+  box-shadow: -40px 60px 120px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08), 0 0 140px rgba(69,222,209,.15); }
+.phone .inner { width: 100%; height: 100%; border-radius: 71px; background: #000; padding: 11px; }
+.screen { width: 100%; height: 100%; border-radius: 60px; background: #000; overflow: hidden; position: relative; }
+.screen img { position: absolute; left: 0; top: 46px; width: 100%; }
+.sb { position: absolute; top: 0; left: 0; right: 0; height: 46px; display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 34px 0 40px; color: #fff; font-weight: 600; font-size: 16px; z-index: 2; }
+.island { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); width: 118px; height: 34px; border-radius: 20px; background: #000; z-index: 3; }
+.icons { display: flex; gap: 6px; align-items: center; }
+.icons i { display: block; background: #fff; border-radius: 2px; }
+.batt { width: 26px; height: 12px; border: 1.5px solid rgba(255,255,255,.6); border-radius: 4px; padding: 1.5px; }
+.batt b { display: block; width: 80%; height: 100%; background: #fff; border-radius: 2px; }
+.glare { position: absolute; inset: 0; border-radius: 60px; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 32%); }
+.btn { position: absolute; width: 5px; background: linear-gradient(90deg,#4a5253,#9aa2a3); border-radius: 3px; }
+
+/* ---------- glass widgets ---------- */
+.glass { position: absolute; border-radius: 36px; overflow: hidden;
+  background: linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,.05));
+  border: 1.5px solid rgba(255,255,255,.28);
+  backdrop-filter: blur(18px) saturate(140%); -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 30px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.35); }
+
+/* top-right: trend pill */
+.w1 { left: 660px; top: 300px; width: 330px; height: 128px; transform: rotate(-9deg); border-radius: 64px; }
+.w1 svg { position: absolute; left: 22px; top: 18px; }
+.w1 .val { position: absolute; right: 16px; top: 16px; width: 96px; height: 96px; border-radius: 50%; background: rgba(255,255,255,.92);
+  display: grid; place-items: center; font-size: 26px; font-weight: 600; color: #0B3737; box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+
+/* bottom-left: budget card */
+.w2 { left: 120px; top: 790px; width: 360px; height: 150px; transform: rotate(-9deg); }
+.w2 .tile { position: absolute; left: 24px; top: 30px; width: 88px; height: 88px; border-radius: 24px; background: #1F6F68; display: grid; place-items: center; }
+.w2 .bars { position: absolute; left: 136px; right: 28px; top: 44px; display: flex; flex-direction: column; gap: 22px; }
+.w2 .track { height: 14px; border-radius: 8px; background: rgba(255,255,255,.18); overflow: hidden; }
+.w2 .track i { display: block; height: 100%; border-radius: 8px; background: var(--accent); }
+.w2 .track.t2 i { background: #fff; }
+
+/* small ring badge, right-low */
+.w3 { left: 760px; top: 880px; width: 150px; height: 150px; border-radius: 50%; transform: rotate(-9deg); display: grid; place-items: center; }
+
+body.no-bg .bg, body.no-bg .beam, body.no-bg .grain, body.no-bg .floor { display: none; }
+</style>
+</head>
+<body>
+<div class="frame" id="frame">
+  <div class="bg"></div>
+  <div class="beam"></div>
+
+  <div class="scene">
+    <div class="floor"></div>
+
+    <div class="phone">
+      <span class="btn" style="left:-3px;top:180px;height:40px"></span>
+      <span class="btn" style="left:-3px;top:250px;height:70px"></span>
+      <span class="btn" style="left:-3px;top:335px;height:70px"></span>
+      <span class="btn" style="right:-3px;top:280px;height:110px"></span>
+      <div class="inner"><div class="screen">
+        <div class="island"></div>
+        <div class="sb"><span>9:41</span>
+          <span class="icons">
+            <i style="width:3px;height:5px"></i><i style="width:3px;height:7px"></i><i style="width:3px;height:9px"></i><i style="width:3px;height:11px"></i>
+            <span class="batt" style="margin-left:6px"><b></b></span>
+          </span></div>
+        <img src="assets/screen-2.png" alt="">
+        <div class="glare"></div>
+      </div></div>
+    </div>
+
+    <div class="glass w1">
+      <svg width="190" height="92" viewBox="0 0 190 92">
+        <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#45DED1" stop-opacity=".45"/><stop offset="1" stop-color="#45DED1" stop-opacity="0"/></linearGradient></defs>
+        <path d="M4 70 C 26 70, 30 40, 52 44 S 82 78, 104 56 S 136 14, 160 24 S 182 30, 186 18 L186 92 L4 92Z" fill="url(#g1)"/>
+        <path d="M4 70 C 26 70, 30 40, 52 44 S 82 78, 104 56 S 136 14, 160 24 S 182 30, 186 18" fill="none" stroke="#45DED1" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="160" cy="24" r="9" fill="#fff" stroke="#45DED1" stroke-width="4"/>
+      </svg>
+      <div class="val">64%</div>
+    </div>
+
+    <div class="glass w2">
+      <div class="tile">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="#45DED1"><path d="M3 7a3 3 0 0 1 3-3h11a2 2 0 0 1 2 2v1h-2V6H6a1 1 0 0 0 0 2h13a2 2 0 0 1 2 2v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V7Zm14 6.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>
+      </div>
+      <div class="bars">
+        <div class="track"><i style="width:72%"></i></div>
+        <div class="track t2"><i style="width:44%"></i></div>
+      </div>
+    </div>
+
+    <div class="glass w3">
+      <svg width="104" height="104" viewBox="0 0 104 104">
+        <circle cx="52" cy="52" r="40" fill="none" stroke="rgba(255,255,255,.2)" stroke-width="14"/>
+        <circle cx="52" cy="52" r="40" fill="none" stroke="#45DED1" stroke-width="14" stroke-linecap="round"
+          stroke-dasharray="251" stroke-dashoffset="80" transform="rotate(-90 52 52)"/>
+        <circle cx="52" cy="52" r="40" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round"
+          stroke-dasharray="40 251" stroke-dashoffset="-180" transform="rotate(-90 52 52)"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="grain"></div>
+</div>
+</body>
+</html>
