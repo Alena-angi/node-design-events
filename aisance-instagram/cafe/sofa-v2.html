@@ -25,6 +25,8 @@
 /* warm reflection on the glass, like the room light */
 .card::after { content: ""; position: absolute; inset: 3px; border-radius: 15px; pointer-events: none;
   background: linear-gradient(115deg, rgba(255,214,170,.16) 0%, rgba(255,214,170,0) 40%); }
+/* right side: the head is there, so the arc turns away into depth instead of running over him */
+.card.right { transform: translate(-50%, -50%) translateZ(700px) translate3d(var(--x), var(--dy), var(--z)) rotateY(var(--a)); }
 .far  { opacity: .82; filter: blur(.5px) brightness(.92); }
 .far2 { opacity: .6;  filter: blur(1px) brightness(.85); }
 .tone { position: absolute; inset: 0; background: rgba(255,170,90,.06); mix-blend-mode: soft-light; pointer-events: none; }
@@ -39,9 +41,8 @@
     <div class="card far2" style="--a:-46deg; --dy:6px"><img src="cards/sq-spend.png" alt=""></div>
     <div class="card far"  style="--a:-31deg; --dy:-4px"><img src="cards/sq-balance.png" alt=""></div>
     <div class="card"      style="--a:-16deg; --dy:4px"><img src="cards/sq-coffee.png" alt=""></div>
-    <div class="card"      style="--a:16deg;  --dy:-6px"><img src="cards/sq-donut.png" alt=""></div>
-    <div class="card far"  style="--a:31deg;  --dy:2px"><img src="cards/sq-kept.png" alt=""></div>
-    <div class="card far2" style="--a:46deg;  --dy:-8px"><img src="cards/home-coffee.png" alt=""></div>
+    <div class="card right" style="--x:160px; --z:-20px; --a:-22deg; --dy:-4px; width:132px"><img src="cards/sq-donut.png" alt=""></div>
+    <div class="card right far" style="--x:300px; --z:-340px; --a:-50deg; --dy:-100px; width:128px"><img src="cards/sq-kept.png" alt=""></div>
   </div></div>
   <div class="tone"></div><div class="grain"></div>
 </div>
