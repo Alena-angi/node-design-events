@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aisance 2.0 — cafe, live scene with real screen cards</title>
+<style>
+@font-face { font-family: "Instrument Serif"; src: url(../fonts/InstrumentSerif-Regular.ttf); }
+@font-face { font-family: "Instrument Serif"; src: url(../fonts/InstrumentSerif-Italic.ttf); font-style: italic; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: #000; }
+.frame { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+
+/* background photo from the mockup, slightly warmer, like a cafe */
+.bg { position: absolute; inset: -40px; background: url(mockup/BG.png) center/cover; filter: blur(6px) saturate(1.05) sepia(.12) brightness(.98); }
+.vign { position: absolute; inset: 0; background: radial-gradient(1200px 900px at 50% 60%, transparent 55%, rgba(0,0,0,.18) 100%); }
+
+/* hand + phone with the real screen */
+.phone { position: absolute; width: 1560px; left: -234px; top: 310px; }   /* 3000x2000 * 0.52 */
+
+/* glass cards with real UI */
+.scene { position: absolute; inset: 0; perspective: 1700px; }
+.card { position: absolute; padding: 12px; border-radius: 36px;
+  background: linear-gradient(135deg, rgba(255,255,255,.34), rgba(255,255,255,.10));
+  border: 1.5px solid rgba(255,255,255,.6);
+  backdrop-filter: blur(18px) saturate(115%); -webkit-backdrop-filter: blur(18px) saturate(115%);
+  box-shadow: 0 30px 60px rgba(20,25,28,.28), inset 0 1px 0 rgba(255,255,255,.7); }
+.card img { display: block; width: 100%; border-radius: 26px; }
+.c-coffee { left: 28px;  top: 742px; width: 470px; transform: rotateY(20deg) rotateZ(-2deg); border-radius: 30px; }
+.c-coffee img { border-radius: 20px; }
+.c-donut  { left: 738px; top: 330px; width: 290px; transform: rotateY(-22deg) rotateZ(1deg); }
+.c-kept   { left: 772px; top: 770px; width: 260px; transform: rotateY(-24deg) rotateZ(1deg); }
+
+/* hook */
+.hook { position: absolute; top: 92px; left: 0; right: 0; text-align: center; color: #1B1E21;
+  font-family: "Instrument Serif", serif; font-size: 92px; line-height: .98; letter-spacing: -.01em; }
+.hook i { font-style: italic; color: #015C56; }
+.mark { position: absolute; top: 34px; left: 50%; width: 46px; transform: translateX(-50%); mix-blend-mode: multiply; }
+body.notext .hook, body.notext .mark { display: none; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="bg"></div><div class="vign"></div>
+  <img class="phone" src="mockup/phone-coffee.png" alt="">
+  <div class="scene">
+    <div class="card c-donut"><img src="cards/donut.png" alt=""></div>
+    <div class="card c-kept"><img src="cards/kept.png" alt=""></div>
+    <div class="card c-coffee"><img src="cards/coffee-week.png" alt=""></div>
+  </div>
+  <img class="mark" src="assets/ai-mark_teal_on-white.png" alt="">
+  <div class="hook">Coffee, logged<br><i>before it cools</i></div>
+</div>
+</body>
+</html>
