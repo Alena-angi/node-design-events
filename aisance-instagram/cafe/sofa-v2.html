@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aisance 2.0 — live scene (sofa), cards on a curved arc</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.frame { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+.photo { position: absolute; inset: 0; background: url(out/sofa-01-screen.png) center/cover; }
+.grade { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,14,16,.35) 0%, rgba(10,14,16,0) 35%, rgba(10,14,16,0) 70%, rgba(10,14,16,.35) 100%); }
+
+/* cards sit on a cylinder around the phone: closest next to it, receding and shrinking to the sides */
+.stage { position: absolute; left: 538px; top: 706px; perspective: 1500px; perspective-origin: 0 0; }
+.ring  { position: absolute; transform-style: preserve-3d; transform: rotateZ(-4deg) translateZ(-700px); }
+.card  { position: absolute; width: 158px; padding: 5px; border-radius: 18px;
+  transform: translate(-50%, -50%) rotateY(var(--a)) translateZ(700px) translateY(var(--dy, 0px));
+  background: linear-gradient(135deg, rgba(255,255,255,.30), rgba(255,255,255,.08));
+  border: 1px solid rgba(255,255,255,.55);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 14px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.6); }
+.card img { display: block; width: 100%; border-radius: 13px; }
+.far  { opacity: .82; filter: blur(.5px) brightness(.92); }
+.far2 { opacity: .6;  filter: blur(1px) brightness(.85); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="photo"></div><div class="grade"></div>
+  <div class="stage"><div class="ring">
+    <div class="card far2" style="--a:-46deg; --dy:6px"><img src="cards/sq-spend.png" alt=""></div>
+    <div class="card far"  style="--a:-31deg; --dy:-4px"><img src="cards/sq-balance.png" alt=""></div>
+    <div class="card"      style="--a:-16deg; --dy:4px"><img src="cards/sq-coffee.png" alt=""></div>
+    <div class="card"      style="--a:16deg;  --dy:-6px"><img src="cards/sq-donut.png" alt=""></div>
+    <div class="card far"  style="--a:31deg;  --dy:2px"><img src="cards/sq-kept.png" alt=""></div>
+    <div class="card far2" style="--a:46deg;  --dy:-8px"><img src="cards/home-coffee.png" alt=""></div>
+  </div></div>
+</div>
+</body>
+</html>
