@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Aisance 2.0 — live scene (sofa), arc of real screen cards</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+.frame { width: 1080px; height: 1350px; position: relative; overflow: hidden; }
+.photo { position: absolute; inset: 0; background: url(out/sofa-01-screen.png) center/cover; }
+/* dark moody grade like the reference, top a bit darker for a future hook */
+.grade { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,14,16,.35) 0%, rgba(10,14,16,0) 35%, rgba(10,14,16,0) 70%, rgba(10,14,16,.35) 100%); }
+.scene { position: absolute; inset: 0; perspective: 1400px; perspective-origin: 540px 700px; }
+.card { position: absolute; padding: 7px; border-radius: 22px;
+  background: linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,.08));
+  border: 1.2px solid rgba(255,255,255,.55);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.6); }
+.card img { display: block; width: 100%; border-radius: 16px; }
+/* arc: near cards next to the phone, far cards smaller, turned and slightly faded */
+.l1 { left: 268px; top: 618px; width: 176px; transform: rotateY(24deg); }
+.l2 { left: 70px;  top: 640px; width: 170px; transform: rotateY(42deg) translateZ(-60px); opacity: .85; filter: blur(.6px); }
+.r1 { left: 640px; top: 612px; width: 180px; transform: rotateY(-24deg); }
+.r2 { left: 838px; top: 636px; width: 170px; transform: rotateY(-42deg) translateZ(-60px); opacity: .85; filter: blur(.6px); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="photo"></div><div class="grade"></div>
+  <div class="scene">
+    <div class="card l2"><img src="cards/balance.png" alt=""></div>
+    <div class="card l1"><img src="cards/home-coffee.png" alt=""></div>
+    <div class="card r1"><img src="cards/donut.png" alt=""></div>
+    <div class="card r2"><img src="cards/kept.png" alt=""></div>
+  </div>
+</div>
+</body>
+</html>

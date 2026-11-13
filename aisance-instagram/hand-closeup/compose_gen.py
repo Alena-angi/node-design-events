@@ -48,8 +48,8 @@ wa = wp[:, :, 3:4] / 255.0
 screen = wp[:, :, :3] * wa                                   # black where our rounded corner ends
 
 # despill: remove green cast on fingers and bezel edges near the screen
-band = cv2.dilate(m.astype(np.uint8), np.ones((25, 25), np.uint8)).astype(bool)
-g2 = np.where(band, np.minimum(g, (r + b) / 2 + 12), g)
+band = cv2.dilate(m.astype(np.uint8), np.ones((45, 45), np.uint8)).astype(bool)
+g2 = np.where(band, np.minimum(g, (r + b) / 2 + 6), g)
 ph2 = np.dstack([b, g2, r])
 
 a = soft[..., None]
