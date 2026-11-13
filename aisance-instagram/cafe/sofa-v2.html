@@ -15,13 +15,21 @@
 .ring  { position: absolute; transform-style: preserve-3d; transform: rotateZ(-4deg) translateZ(-700px); }
 .card  { position: absolute; width: 158px; padding: 5px; border-radius: 18px;
   transform: translate(-50%, -50%) rotateY(var(--a)) translateZ(700px) translateY(var(--dy, 0px));
-  background: linear-gradient(135deg, rgba(255,255,255,.30), rgba(255,255,255,.08));
-  border: 1px solid rgba(255,255,255,.55);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 14px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.6); }
-.card img { display: block; width: 100%; border-radius: 13px; }
+  padding: 3px;
+  /* glass rim lit by the window on the left */
+  background: linear-gradient(100deg, rgba(255,236,210,.32), rgba(255,255,255,.06) 55%, rgba(255,255,255,.12));
+  border: 1px solid rgba(255,240,220,.38);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 18px 34px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3), inset 1px 1px 0 rgba(255,240,220,.45); }
+.card img { display: block; width: 100%; border-radius: 15px; filter: blur(.35px) brightness(.9) contrast(.96); opacity: .96; }
+/* warm reflection on the glass, like the room light */
+.card::after { content: ""; position: absolute; inset: 3px; border-radius: 15px; pointer-events: none;
+  background: linear-gradient(115deg, rgba(255,214,170,.16) 0%, rgba(255,214,170,0) 40%); }
 .far  { opacity: .82; filter: blur(.5px) brightness(.92); }
 .far2 { opacity: .6;  filter: blur(1px) brightness(.85); }
+.tone { position: absolute; inset: 0; background: rgba(255,170,90,.06); mix-blend-mode: soft-light; pointer-events: none; }
+.grain { position: absolute; inset: 0; opacity: .10; mix-blend-mode: overlay; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
 </style>
 </head>
 <body>
@@ -35,6 +43,7 @@
     <div class="card far"  style="--a:31deg;  --dy:2px"><img src="cards/sq-kept.png" alt=""></div>
     <div class="card far2" style="--a:46deg;  --dy:-8px"><img src="cards/home-coffee.png" alt=""></div>
   </div></div>
+  <div class="tone"></div><div class="grain"></div>
 </div>
 </body>
 </html>
